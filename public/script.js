@@ -1,6 +1,12 @@
+
+let user = 'Ms. Kellogg';
+
+const intro = document.getElementById('hi')
+
 document.addEventListener('DOMContentLoaded', () => {
     const pending = document.getElementById('pending');
     const table = document.querySelector('.table');
+   
   
     pending.addEventListener('shown.bs.collapse', () => {
       table.classList.add('pending-open');
@@ -9,6 +15,11 @@ document.addEventListener('DOMContentLoaded', () => {
     pending.addEventListener('hidden.bs.collapse', () => {
       table.classList.remove('pending-open');
     });
+
+    user = JSON.parse(localStorage.getItem('user')) || 'Ms. Kellogg';
+    intro.innerText =  `Hi ${user}`
+    console.log(user)
+
   });
 
   const dimmerbtn = document.getElementById('dimmerSelect')
@@ -49,6 +60,18 @@ dimmerbtn.addEventListener('click', ()=>{
     table.appendChild(tbody);
     tableDiv.appendChild(table);
 
+});
+
+
+document.querySelectorAll('.dropdown-item').forEach(item => {
+  item.addEventListener('click', function (e) {
+    e.preventDefault(); // Prevent default anchor behavior
+    const user = this.getAttribute('data-user');
+    localStorage.setItem('user', JSON.stringify(user));
+    intro.innerText =  `Hi ${user}`
+    console.log(user)
+    
+  });
 });
 
 

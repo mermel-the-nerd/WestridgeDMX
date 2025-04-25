@@ -1,5 +1,5 @@
 import express from 'express';
-import { loadHome, chooseAddress } from '../controllers/exampleController.js';
+import { loadHome, chooseAddress, } from '../controllers/exampleController.js';
 
 const router = express.Router();
 

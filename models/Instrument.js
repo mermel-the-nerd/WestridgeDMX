@@ -5,18 +5,26 @@ const instrumentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  // createdAt: {
-  //   type: Date,
-  //   default: Date.now,
-  // },
-  // creator: {
-
-  // },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+  creator: {
+    type: String,
+    enum: ["Ms. Kellogg", "Rob", "Maddie"]
+  },
+  pending: {
+    type: Boolean,
+    default: true,
+    
+  },
   startAddress: {
     type: Number,
+    required: true,
   },
   endAddress: {
     type: Number,
+    required: true,
   },
   notes: {
     type: String,
