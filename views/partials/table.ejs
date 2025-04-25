@@ -1,0 +1,126 @@
+<h4 id="table-header">Dimmer Addresses</h4>
+
+<div id="accordions">
+  
+  <div class="accordion mb-4" id="accordionLeft">
+    <% instruments.forEach((instrument, index) => { %>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingLeft<%= index %>">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLeft<%= index %>" aria-expanded="false" aria-controls="collapseLeft<%= index %>">
+            <%= instrument.startAddress%>-<%= instrument.endAddress%>: <%= instrument.name %>
+          </button>
+        </h2>
+        <div id="collapseLeft<%= index %>" class="accordion-collapse collapse show" data-bs-parent="#accordionLeft">
+          <div class="accordion-body">
+            <ol start="<%= instrument.startAddress%>">
+              <% for(let i=instrument.startAddress; i>=instrument.endAddress;i++){ %>
+                <li>tst</li>
+              <% }     %>    
+              
+            </ol>
+            <p><%= instrument.notes%></p>
+            <div class="accordion-buttons">
+              <button class="btn btn-success">Edit</button>
+              <button class="btn btn-danger">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+  
+
+  <!-- <div class="accordion-item">
+    <h2 class="accordion-header" id="headingLeftOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLeftOne" aria-expanded="true" aria-controls="collapseLeftOne">
+        5-20: First Electric
+      </button>
+    </h2>
+    <div id="collapseLeftOne" class="accordion-collapse collapse show" data-bs-parent="#accordionLeft">
+      <div class="accordion-body">
+        <ol start="5">
+            <li>Source 4</li>
+            <li>Fernell</li>
+            <li>add more info here</li>
+        </ol>
+        <p>general notes will go here</p>
+        <div class="accordion-buttons">
+        <button class="btn btn-success">Edit</button>
+        <button class="btn btn-danger">Delete</button>
+    </div>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingLeftTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLeftTwo" aria-expanded="false" aria-controls="collapseLeftTwo">
+        Accordion Item #2
+      </button>
+    </h2>
+    <div id="collapseLeftTwo" class="accordion-collapse collapse" data-bs-parent="#accordionLeft">
+      <div class="accordion-body">
+        <strong>This is the second item's accordion body.</strong>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingLeftThree">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLeftThree" aria-expanded="false" aria-controls="collapseLeftThree">
+        Accordion Item #3
+      </button>
+    </h2>
+    <div id="collapseLeftThree" class="accordion-collapse collapse" data-bs-parent="#accordionLeft">
+      <div class="accordion-body">
+        <strong>This is the third item's accordion body.</strong>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="accordion" id="accordionRight">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingRightOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRightOne" aria-expanded="true" aria-controls="collapseRightOne">
+        Accordion Item #1
+      </button>
+    </h2>
+    <div id="collapseRightOne" class="accordion-collapse collapse show" data-bs-parent="#accordionRight">
+      <div class="accordion-body">
+        <ol start="5">
+          <li>Source 4</li>
+          <li>Fernell</li>
+          <li>add more info here</li>
+      </ol>
+      <p>general notes will go here</p>
+      <div class="accordion-buttons">
+      <button class="btn btn-success">Edit</button>
+      <button class="btn btn-danger">Delete</button>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingRightTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRightTwo" aria-expanded="false" aria-controls="collapseRightTwo">
+        Accordion Item #2
+      </button>
+    </h2>
+    <div id="collapseRightTwo" class="accordion-collapse collapse" data-bs-parent="#accordionRight">
+      <div class="accordion-body">
+        <strong>This is the second item's accordion body.</strong>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingRightThree">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRightThree" aria-expanded="false" aria-controls="collapseRightThree">
+        Accordion Item #3
+      </button>
+    </h2>
+    <div id="collapseRightThree" class="accordion-collapse collapse" data-bs-parent="#accordionRight">
+      <div class="accordion-body">
+        <strong>This is the third item's accordion body.</strong>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

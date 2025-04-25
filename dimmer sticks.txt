@@ -1,0 +1,45 @@
+dimmer sticks:
+
+login - rob or ms Kellogg
+
+
+database of addresses to info
+
+search feature -> filter for blank spaces
+
+filter just one group
+
+have the home screen dropdowns for groups?
+
+make when mulitiple numbers one line    
+
+make it editable - somehow mark if the changes were made by the other person?
+
+
+add new instrument button -> changes screen to show only avaliable slots/chunks
+
+ask rob/kellogg about archival!!
+
+setup to move stuff?
+'
+
+basically make GitHub - pending changes in one menu -> once done irl confirm and then it changes in database
+
+search: number just gives number / what instrument is assigned to it if any
+can also search for instrument/electric -> will show all the numbers its assigned to
+
+
+
+
+to do:
+make light database + show in ui
+function to add new lights/instruments
+	show blank spaces
+edit prexsisting lights
+	also way to move addresses not just data
+delete lights
+change user
+track changes
+search
+
+

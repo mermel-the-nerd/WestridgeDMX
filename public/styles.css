@@ -1,0 +1,109 @@
+
+  .topline {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+  }
+
+  #pending {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    overflow-y: auto;
+    background-color: #ffffff;
+    border-left: 1px solid #dee2e6;
+    padding: 1rem;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 1050;
+    width: 0; /* Start closed */
+    transition: width 0.4s ease; /* Animate width */
+  }
+  
+  #pending.show {
+    width: 300px; /* Animate open */
+  }
+
+  .content-wrapper {
+    display: flex;
+    transition: all 0.4s ease;
+    height: 100%;
+    position: relative;
+  }
+
+  * {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+  }
+  
+  .table {
+    flex-grow: 1;
+    transition: margin-right 0.4s ease;
+    
+  }
+
+  .pending-open {
+    margin-right:300px;
+  }
+  
+
+  /* .topline > .btn {
+    background-color: rgb(62, 62, 158);
+  }
+
+  .topline > .dropdown > .btn {
+    background-color: rgb(62, 62, 158);
+  } */
+
+ 
+  
+  #accordions {
+    display: flex;
+    gap: 2rem; /* space between the accordions */
+    flex-wrap: wrap; /* allows them to stack on smaller screens */
+    padding: 2%;
+  }
+  
+  .accordion {
+    flex: 1;
+    min-width: 300px; /* responsive minimum width */
+  }
+
+  #table-header {
+    margin:auto;
+    text-align: center;
+  }
+
+.accordion-buttons {
+    text-align: right;
+}
+
+#hi {
+    text-align: center;
+    margin:auto;
+    padding:10px;
+    
+}
+
+
+  /* Rounded border for the table */
+  /* #modal-table-div table {
+    border-radius: 12px;
+    overflow: hidden; 
+    /* border-collapse: separate;
+    border-spacing: 0; 
+  } */
+
+  /* Remove borders from the inputs */
+  #modal-table-div input.form-control {
+    border: none;
+    
+    
+  }
+
+  
+
+  

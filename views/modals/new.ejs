@@ -1,0 +1,71 @@
+
+
+
+<div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Instrument</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+<form action="/submitnew" method="POST" class="p-4 border rounded bg-light shadow-sm">
+
+    <div class="mb-3">
+      <label for="name" class="form-label">Name of DMX Instrument:</label>
+      <input name="name" id="name" type="text" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="number" class="form-label">Number of Addresses Needed:</label>
+        <input name="number" id="number" type="number" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+       
+
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Choose your addresses
+  </button>
+  <ul class="dropdown-menu">
+    <!-- make it dynamic to whats avaliable -->
+    <li><a class="dropdown-item" href="#">Action</a></li>
+    <li><a class="dropdown-item" href="#">Another action</a></li>
+    <li><a class="dropdown-item" href="#">Something else here</a></li>
+  </ul>
+</div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">DMX Type:</label>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="dmxtype" id="dimmerSelect" value="dimmer">
+          <label class="form-check-label" for="dimmerSelect">Dimmer</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="dmxtype" id="otherInstrument" value="other">
+          <label class="form-check-label" for="otherInstrument">Other Instrument</label>
+        </div>
+      </div>
+    
+
+    <!-- if dimmer have dynamic field here for each address -->
+    <div class="mb-3" id="modal-table-div">
+        
+    </div>
+  
+    <div class="mb-3">
+      <label for="notes" class="form-label">Notes:</label>
+      <textarea name="notes" id="notes" class="form-control" rows="5" placeholder="Write any notes about your instrument here"></textarea>
+    </div>
+  
+    <button type="submit"  class="close btn btn-primary">Confirm</button>
+  
+  </form>
+      
+      </div>
+      
+    </div>
+  </div>
+  
