@@ -5,20 +5,23 @@ const intro = document.getElementById('hi')
 
 document.addEventListener('DOMContentLoaded', () => {
     const pending = document.getElementById('pending');
-    const table = document.querySelector('.table');
+    const table = document.querySelector('.content-wrapper');
+    const pendingbtn = document.getElementById('pendingbtn')
    
   
     pending.addEventListener('shown.bs.collapse', () => {
       table.classList.add('pending-open');
+      pendingbtn.innerText='Hide Changelog'
     });
   
     pending.addEventListener('hidden.bs.collapse', () => {
       table.classList.remove('pending-open');
+      pendingbtn.innerText='Show Changelog'
     });
 
     user = JSON.parse(localStorage.getItem('user')) || 'Ms. Kellogg';
     intro.innerText =  `Hi ${user}`
-    console.log(user)
+    
 
   });
 

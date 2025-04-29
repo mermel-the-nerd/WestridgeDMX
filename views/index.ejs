@@ -23,14 +23,14 @@
     </div>
     <input type="text" class="form-control w-auto" placeholder="Search">
     <button id='addNewBtn' data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-secondary">Add New Instrument</button>
-    <button id='pendingbtn' class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#pending" aria-expanded="false" aria-controls="pending">Show Changelog</button>
+    <button id='pendingbtn' class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#pending" aria-expanded="true" aria-controls="pending">Hide Changelog</button>
   </div>
   <h3 id="hi">Hi </h3>
-  <div class="content-wrapper">
+  <div class="content-wrapper pending-open">
   <div class="table">
     <%- include('partials/table') %>
   </div>
-  <div id="pending" class="collapse collapse-horizontal">
+  <div id="pending" class="collapse collapse-horizontal show">
     <%- include('partials/pending') %>
   </div>
 </div>

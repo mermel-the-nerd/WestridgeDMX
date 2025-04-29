@@ -1,6 +1,17 @@
+<h2>Pending changes</h2>
+<% let pendinginstrument = false%>
+<% instruments.forEach(function(instrument, ) { %>
+    <% if (instrument.pending) { 
+        pendinginstrument = true%>
+        <div>
+            <p><%= instrument.creator %> wants <%= instrument.name %> in addresses <%= instrument.startAddress %>-<%= instrument.endAddress %></p>
+            <a href="/confirm/<%= instrument.id %>" class="btn btn-secondary">Done</a>
 
-    <h2>Pending changes</h2>
-    <div>
-        <p>[person] wants [instrument] in addresses [addresses]</p>
-        <button class="btn btn-secondary">done</button>
-    </div>
+        </div>
+    <% }
+         
+ }); 
+ 
+  if(!pendinginstrument){%>
+<p>You have no pending instruments! Horray</p>
+        <% }%>

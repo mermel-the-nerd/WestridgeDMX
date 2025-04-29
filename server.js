@@ -1,7 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';
-import exampleRoutes from './routes/exampleRoutes.js';
+import routes from './routes/routes.js';
 
 dotenv.config();
 
@@ -19,7 +19,7 @@ app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
 // Routes
-app.use('/', exampleRoutes);
+app.use('/', routes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
