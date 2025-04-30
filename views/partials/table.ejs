@@ -22,7 +22,7 @@
             <p><%= instrument.notes%></p>
             <div class="accordion-buttons">
               <button class="btn btn-success">Edit</button>
-              <button class="btn btn-danger">Delete</button>
+              <a href="/delete/<%= instrument.id %>" class="btn btn-danger">Delete</a>
             </div>
           </div>
         </div>
@@ -89,7 +89,7 @@
       <div class="accordion-body">
         <ol start="5">
           <li>Source 4</li>
-          <li>Fernell</li>
+          <li>Fresnel</li>
           <li>add more info here</li>
       </ol>
       <p>general notes will go here</p>

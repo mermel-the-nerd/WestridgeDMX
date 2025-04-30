@@ -18,13 +18,17 @@ const instrumentSchema = new mongoose.Schema({
     default: true,
     
   },
+  dmxtype: {
+    type: String,
+    enum: ['single','multiple']
+  },
   startAddress: {
     type: Number,
-    required: true,
+    // required: true,
   },
   endAddress: {
     type: Number,
-    required: true,
+    // required: true,
   },
   notes: {
     type: String,

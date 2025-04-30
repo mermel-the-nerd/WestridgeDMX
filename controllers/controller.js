@@ -13,14 +13,15 @@ export const loadHome = async (req, res) => {
 
 export const addInstrument = async (req, res) => {
   try {
-    const { name, number, startAddress, endAddress, dmxtype, notes } = req.body;
+    //startAddress, endAddress
+    const { name, number, dmxtype, notes } = req.body;
     console.log( name )
     
 
-    const instrument = new Instrument({ name, notes});
-
+    const instrument = new Instrument({ name, dmxtype, notes});
+    await instrument.save();  
     const instruments = await Instrument.find();
-
+      
   
 
 
@@ -39,6 +40,18 @@ export const confirmChange = async (req, res) => {
 
     await Instrument.findByIdAndUpdate(instrumentId, { pending: false });
 
+    res.redirect('/');
+  } catch (err) {
+    console.error(err); // helpful for debugging
+    res.status(500).send('Server Error');
+  }
+};
+
+export const deleteInstrument = async (req, res) => {
+  try {
+    const instrumentId = req.params.id;
+    await Instrument.findByIdAndDelete(instrumentId)
+       
     res.redirect('/');
   } catch (err) {
     console.error(err); // helpful for debugging
