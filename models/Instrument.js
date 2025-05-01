@@ -22,6 +22,9 @@ const instrumentSchema = new mongoose.Schema({
     type: String,
     enum: ['single','multiple']
   },
+  lightlist: {
+    type: Array,
+  },
   startAddress: {
     type: Number,
     // required: true,

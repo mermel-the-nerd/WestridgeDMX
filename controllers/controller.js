@@ -14,11 +14,12 @@ export const loadHome = async (req, res) => {
 export const addInstrument = async (req, res) => {
   try {
     //startAddress, endAddress
-    const { name, number, dmxtype, notes } = req.body;
-    console.log( name )
+    const { name, number, dmxtype, notes, lightlist} = req.body;
+    
+    
     
 
-    const instrument = new Instrument({ name, dmxtype, notes});
+    const instrument = new Instrument({ name, dmxtype, notes, lightlist, dmxtype});
     await instrument.save();  
     const instruments = await Instrument.find();
       
@@ -27,8 +28,8 @@ export const addInstrument = async (req, res) => {
 
 
 
-    res.render('index', { instruments});
-    // res.redirect('/')
+    // res.render('index', { instruments});
+    res.redirect('/')
   } catch (err) {
     res.status(500).send('Server Error');
   }
@@ -46,6 +47,28 @@ export const confirmChange = async (req, res) => {
     res.status(500).send('Server Error');
   }
 };
+
+export const updateInstrument = async (req, res) => {
+  try {
+    console.log('controller')
+    const instrumentId = req.params.id;
+    const {lightlist, notes} = req.body
+    console.log(lightlist)
+    await Instrument.findByIdAndUpdate(instrumentId, {
+      lightlist,
+      notes,
+      pending: true
+    });
+
+    res.redirect('/')
+  } catch (err) {
+    console.error(err); // helpful for debugging
+    res.status(500).send('Server Error');
+  }
+};
+
+
+
 
 export const deleteInstrument = async (req, res) => {
   try {

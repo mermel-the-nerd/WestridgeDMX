@@ -6,6 +6,7 @@
     <% instruments.forEach((instrument, index) => { 
       if(!instrument.pending){ %>
       <div class="accordion-item">
+        <form action="/save/<%= instrument.id%>" method="POST">
         <h2 class="accordion-header" id="headingLeft<%= index %>">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLeft<%= index %>" aria-expanded="false" aria-controls="collapseLeft<%= index %>">
             <%= instrument.startAddress%>-<%= instrument.endAddress%>: <%= instrument.name %>
@@ -13,19 +14,39 @@
         </h2>
         <div id="collapseLeft<%= index %>" class="accordion-collapse collapse" data-bs-parent="#accordionLeft">
           <div class="accordion-body">
-            <ol start="<%= instrument.startAddress%>">
-              <% for(let i=instrument.startAddress; i>=instrument.endAddress;i++){ %>
-                <li>tst</li>
-              <% }     %>    
-              
-            </ol>
-            <p><%= instrument.notes%></p>
+            
+            <% if(instrument.dmxtype == 'multiple'){ %>
+              <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Instrument</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+  <% instrument.lightlist.forEach((light,index)=> { %>
+    <tr>
+      <th scope="row"><%= instrument.startAddress+index%></th>
+      <td><%= light%></td>
+      
+    </tr>
+  <% }) %>
+
+  </tbody>
+</table>
+    <% } %>
+
+
+
+            <p class="notes"><%= instrument.notes%></p>
             <div class="accordion-buttons">
-              <button class="btn btn-success">Edit</button>
+              <button class="btn btn-success edit" data-id="<%= instrument.id %>" >Edit</button>
               <a href="/delete/<%= instrument.id %>" class="btn btn-danger">Delete</a>
             </div>
           </div>
         </div>
+        </form>
       </div>
     <% }}) %>
   </div>
