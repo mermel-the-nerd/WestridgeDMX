@@ -9,9 +9,9 @@ const instrumentSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  creator: {
+  user: {
     type: String,
-    enum: ["Ms. Kellogg", "Rob", "Maddie"]
+    enum: ["Ms Kellogg", "Rob", "Maddie"]
   },
   pending: {
     type: Boolean,

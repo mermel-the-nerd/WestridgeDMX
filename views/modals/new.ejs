@@ -9,7 +9,9 @@
       </div>
       <div class="modal-body">
         
-<form action="/submitnew" method="POST" class="p-4 border rounded bg-light shadow-sm">
+<form action="/submitnew" method="POST" class="p-4 border rounded bg-light shadow-sm" id="newInstruForm">
+
+  <input type="hidden" name="user" id="userInput">
 
     <div class="mb-3">
       <label for="name" class="form-label">Name of DMX Instrument:</label>

@@ -20,9 +20,17 @@ document.addEventListener('DOMContentLoaded', () => { //show + hide pending side
     });
 
     user = JSON.parse(localStorage.getItem('user')) || 'Ms. Kellogg'; //change user on the front part
-    intro.innerText =  `Hi ${user}`
+    intro.innerText =  `Hi ${user}` 
     
 
+  });
+
+  const initForm = document.getElementById('newInstruForm')
+
+  initForm.addEventListener('submit', function () {
+
+    document.getElementById('userInput').value = user; //passing user through to controller
+  
   });
 
   const dimmerbtn = document.getElementById('multiple') //below for dynamically making table when initializing new instrument
@@ -107,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
 document.querySelectorAll('.dropdown-item').forEach(item => {
   item.addEventListener('click', function (e) {
     e.preventDefault(); // Prevent default anchor behavior
-    const user = this.getAttribute('data-user');
+    user = this.getAttribute('data-user');
     localStorage.setItem('user', JSON.stringify(user));
     intro.innerText =  `Hi ${user}`
     console.log(user)

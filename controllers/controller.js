@@ -14,24 +14,19 @@ export const loadHome = async (req, res) => {
 export const addInstrument = async (req, res) => {
   try {
     //startAddress, endAddress
-    const { name, number, dmxtype, notes, lightlist} = req.body;
+    const { name, number, dmxtype, notes, lightlist, user} = req.body;
+    console.log(user)
     
-    
-    
-
-    const instrument = new Instrument({ name, dmxtype, notes, lightlist, dmxtype});
+    const instrument = new Instrument({ name, dmxtype, notes, lightlist, dmxtype, user});
     await instrument.save();  
     const instruments = await Instrument.find();
       
   
 
-
-
-
     // res.render('index', { instruments});
     res.redirect('/')
   } catch (err) {
-    res.status(500).send('Server Error');
+    res.status(500).send(err);
   }
 };
 
