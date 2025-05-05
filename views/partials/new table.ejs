@@ -1,0 +1,21 @@
+<table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            
+            <th scope="col">DMX</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        <% instruments.forEach((instrument, index) => { 
+            if(!instrument.pending){%>
+            <tr>
+                <th scope="row" > <%= instrument.startAddress%>-<%= instrument.endAddress%> <% if(instrument.dmxtype=="multiple"){%> <button class="btn open"  data-start="<%= instrument.startAddress %>"
+                    data-lightlist='<%- JSON.stringify(instrument.lightlist) %>'>></button><% }%></th>
+                <td><%= instrument.name %></td>
+                
+            </tr>
+        <% }}) %>
+    </tbody>
+</table>

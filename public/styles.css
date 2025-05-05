@@ -38,15 +38,23 @@
   * {
     font-family:Verdana, Geneva, Tahoma, sans-serif;
   }
+
+  /* .open {
+    align-items: right;
+  } */
   
   .table {
     flex-grow: 1;
     transition: margin-right 0.4s ease;
-    
+    padding: 2%;
   }
 
   .pending-open {
     margin-right:300px;
+  }
+
+  h4 {
+    text-align: center;
   }
   
 

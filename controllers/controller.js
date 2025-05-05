@@ -4,6 +4,8 @@ import Instrument from '../models/Instrument.js';
 export const loadHome = async (req, res) => {
   try {
     const instruments = await Instrument.find();
+
+    instruments.sort((a, b) => a.startAddress - b.startAddress);
     
     res.render('index', { instruments});
   } catch (err) {
