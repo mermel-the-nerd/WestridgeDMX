@@ -10,12 +10,25 @@
     <tbody>
         <% instruments.forEach((instrument, index) => { 
             if(!instrument.pending){%>
+                
             <tr>
+                
                 <th scope="row" > <%= instrument.startAddress%>-<%= instrument.endAddress%> <% if(instrument.dmxtype=="multiple"){%> <button class="btn open"  data-start="<%= instrument.startAddress %>"
                     data-lightlist='<%- JSON.stringify(instrument.lightlist) %>'>></button><% }%></th>
-                <td><%= instrument.name %></td>
-                
-            </tr>
+                  
+                    <td>
+  <form action="/save/<%= instrument.id %>" method="POST">
+    <p class="instrument-name"><%= instrument.name %></p>
+    <div class="button-group">
+      <button class="btn btn-success edit" data-id="<%= instrument.id %>">Edit</button>
+      <a href="/delete/<%= instrument.id %>" class="btn btn-danger">Delete</a>
+    </div>
+  </form>
+</td>
+
+                    
+                </tr>
+              
         <% }}) %>
     </tbody>
 </table>

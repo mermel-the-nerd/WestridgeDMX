@@ -49,13 +49,16 @@ export const updateInstrument = async (req, res) => {
   try {
     console.log('controller')
     const instrumentId = req.params.id;
-    const {lightlist, notes} = req.body
-    console.log(lightlist)
+    const {lightlist, notes, name} = req.body
+    console.log(req.body);
+
     await Instrument.findByIdAndUpdate(instrumentId, {
       lightlist,
+      name,
       notes,
       pending: true
     });
+    
 
     res.redirect('/')
   } catch (err) {

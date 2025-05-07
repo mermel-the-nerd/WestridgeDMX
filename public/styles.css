@@ -66,6 +66,26 @@
     background-color: rgb(62, 62, 158);
   } */
 
+  td form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .instrument-name {
+    margin: 0;
+  }
+  
+  td form .btn {
+    margin-left: 0.5rem;
+  }
+  
+  td form .button-group {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+
  
   
   #accordions {
