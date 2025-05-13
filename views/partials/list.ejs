@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+    <table class="table" >
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Location</th>
+            <th>Instrument Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% instruments.forEach(function(instrument, idx) { 
+               if (!instrument.pending) { %>
+            
+            <!-- Summary Row -->
+            <tr class="toggle-btn" onclick="toggleRows('<%= idx %>')" colspan="3">
+              <td ><%= instrument.startAddress %>–<%= instrument.endAddress %></td>
+              <td> <%= instrument.name %></td>
+            </tr>
+    
+            <!-- Detail Rows -->
+            <% for (let i = instrument.startAddress; i <= instrument.endAddress; i++) { %>
+                  <tr class="details-<%= idx %> hidden-rows">
+                    <th scope="row"><%= i %></th>
+                    <td><%= instrument.name %></td>
+                    <td><%= instrument.dmxtype==='multiple' ?  instrument.lightlist[i] : "" %></td>
+                  </tr>
+            <%   } 
+                %>
+    
+          <% } }); %>
+        </tbody>
+      </table>
+</body>
+</html>

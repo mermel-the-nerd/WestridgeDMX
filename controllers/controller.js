@@ -56,7 +56,7 @@ export const updateInstrument = async (req, res) => {
       lightlist,
       name,
       notes,
-      pending: true
+      // pending: true
     });
     
 
