@@ -33,17 +33,15 @@ document.addEventListener('DOMContentLoaded', () => { //show + hide pending side
   
   });
 
-  const dimmerbtn = document.getElementById('multiple') //below for dynamically making table when initializing new instrument
+   //below for dynamically making table when initializing new instrument
   const tableDiv = document.getElementById('modal-table-div')
-  const addressCount = document.getElementById("number").value
-  const instrubtn = document.getElementById('single')
+  const addressInput = document.getElementById("number")
+ 
 
-  instrubtn.addEventListener('click', ()=>{
-    tableDiv.innerHTML = ''
-  })
+ 
 
-dimmerbtn.addEventListener('click', ()=>{
-    const addressCount = document.getElementById("number").value
+addressInput.addEventListener('input', ()=>{
+    const addressCount = addressInput.value
     tableDiv.innerHTML = '';
     const table = document.createElement('table');
     table.classList.add('table', 'table-bordered');
@@ -52,7 +50,7 @@ dimmerbtn.addEventListener('click', ()=>{
     thead.innerHTML = `
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Name</th>
+        <th scope="col">Instrument type (if needed)</th>
       </tr>
     `;
     table.appendChild(thead);
@@ -74,69 +72,33 @@ dimmerbtn.addEventListener('click', ()=>{
 });
 
 
-document.addEventListener("DOMContentLoaded", () => { //edit button functionality
-  document.querySelectorAll(".edit").forEach(button => {
-    button.addEventListener("click", (e) => {
-      
-      if (button.textContent.trim() === 'Edit') {
-        // First click — prevent navigation
-        e.preventDefault();
+document.querySelectorAll('.editable').forEach(td => {
+  td.addEventListener('click', function () {
+    // Prevent re-entering input mode
+    if (td.querySelector('input')) return;
 
-        const accordionBody = button.closest("td");
+    // Save and exit from any currently open input
+    const openInput = document.querySelector('.editable input');
+    if (openInput) {
+      const parentTd = openInput.closest('td');
+      parentTd.textContent = openInput.value.trim();
+    }
 
-        // Convert td text to inputs
-        accordionBody.querySelectorAll(".instrument-name").forEach(td => {
-          const text = td.textContent.trim();
-        
-          td.innerHTML = `<input type="text" class="form-control" name="name" placeholder="${text}" value="${text}">`;
-        });
+    // Make current td editable
+    const text = td.textContent.trim();
+    td.innerHTML = `<input type="text" class="form-control" name="lightlist[]" value="${text}" placeholder="${text}">`;
 
-        
+    const input = td.querySelector('input');
+    input.focus();
 
-        //td.innerHTML = `<input type="text" class="form-control" name="lightlist[]" placeholder="${text}" value="${text}">`;
-
-        // const notes = accordionBody.querySelector('.notes')
-        // const textnotes = notes.textContent.trim();
-        // notes.innerHTML = `<textarea name="notes" id="notes" class="form-control" rows="5" placeholder="${textnotes}"></textarea>`
-
-        // Update class and text
-        
-        button.classList.remove('btn-success');
-        button.classList.add('btn-primary');
-
-        button.setAttribute('type','submit')
-
-        button.textContent = 'Save';
-
-
-
-        const tr = button.closest("tr");
-
-        // Try to find the lightlist button (only exists if dmxtype is "multiple")
-        const lightlistBtn = tr.querySelector("button.open");
-
-        if (lightlistBtn) {
-          openLightlist(lightlistBtn); // Call your existing function
-
-        }
-        setTimeout(() => {
-          const expandedRow = tr.nextElementSibling;
-          if (expandedRow && expandedRow.classList.contains('expanded-row')) {
-          const inputs = expandedRow.querySelectorAll(".lightlist");
-          
-            inputs.forEach((td, index) => {
-              const value = td.textContent.trim();
-              td.innerHTML = `<input type="text" class="form-control" name="lightlist[]" value="${value}" placeholder="${value}">`;
-              //td.innerHTML = `<input type="text" class="form-control" name="lightlist[]" placeholder="${text}" value="${text}">`;
-            });
-          }
-        }, 0); // use 0 to defer execution after DOM is updated
+    // Handle Enter key to save
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        td.textContent = input.value.trim();
       }
-      // Else, it's the second click — let the link navigate
     });
   });
 });
-
 
 
 let rowsopen = false
