@@ -47,17 +47,16 @@ export const confirmChange = async (req, res) => {
 
 export const updateInstrument = async (req, res) => {
   try {
-    console.log('controller')
+   
     const instrumentId = req.params.id;
-    const {lightlist, notes, name} = req.body
-    console.log(req.body);
+    const index = req.query.index;
+    const light = req.body.light
+    
+    const instrument = await Instrument.findById(instrumentId)
 
-    await Instrument.findByIdAndUpdate(instrumentId, {
-      lightlist,
-      name,
-      notes,
-      // pending: true
-    });
+    instrument.lightlist[index] = light
+
+    await instrument.save()    
     
 
     res.redirect('/')

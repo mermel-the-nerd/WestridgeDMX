@@ -18,25 +18,19 @@ const instrumentSchema = new mongoose.Schema({
     default: true,
     
   },
-  dmxtype: {
-    type: String,
-    enum: ['single','multiple']
-  },
+  
   lightlist: {
     type: Array,
   },
   startAddress: {
     type: Number,
+    default: 1,
     // required: true,
   },
   endAddress: {
     type: Number,
     // required: true,
-  },
-  notes: {
-    type: String,
-    
-  },
+  }, 
 });
 
 const Instrument = mongoose.model('Instrument', instrumentSchema);

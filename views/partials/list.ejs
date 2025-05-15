@@ -20,12 +20,12 @@
                if (!instrument.pending) { %>
             
             <!-- Summary Row -->
-            <form action="/save/<%= instrument.id %>" method="POST">
+            
             <tr class="toggle-btn" onclick="toggleRows('<%= idx %>')" colspan="3">
               <td ><%= instrument.startAddress %>–<%= instrument.endAddress %></td>
               <td> <%= instrument.name %></td>
               <td></td>
-              <td><button class='btn btn-primary' type="submit">Save edits</button><a href="/delete/<%= instrument.id %>" class="btn btn-danger">Delete</a></td>
+              <td><a href="/delete/<%= instrument.id %>" class="btn btn-danger">Delete</a></td>
             </tr>
     
          
@@ -33,11 +33,11 @@
     <tr class="details-<%= idx %> hidden-rows">
       <th scope="row"><%= instrument.startAddress + localIndex %></th>
       <td><%= instrument.name %></td>
-      <td class="editable"><%= light %></td>
+      <td class="editable" data-index="<%= localIndex %>" data-id="<%= instrument._id %>"><%= light %></td>
     </tr>
   <% }) %>
 
-</form>
+
           <% } }); %>
         </tbody>
       </table>

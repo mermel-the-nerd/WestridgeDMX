@@ -72,7 +72,7 @@ addressInput.addEventListener('input', ()=>{
 });
 
 
-document.querySelectorAll('.editable').forEach(td => {
+document.querySelectorAll('.editable').forEach((td) => {
   td.addEventListener('click', function () {
     // Prevent re-entering input mode
     if (td.querySelector('input')) return;
@@ -84,9 +84,13 @@ document.querySelectorAll('.editable').forEach(td => {
       parentTd.textContent = openInput.value.trim();
     }
 
+    const realIndex = td.getAttribute('data-index');
+    const formID = `edit-form-${realIndex}`;
+    const instrumentId = td.getAttribute('data-id');
+
     // Make current td editable
     const text = td.textContent.trim();
-    td.innerHTML = `<input type="text" class="form-control" name="lightlist[]" value="${text}" placeholder="${text}">`;
+    td.innerHTML = `<form id="${formID}" action="/save/${instrumentId}?index=${realIndex}" method="POST"><input type="text" class="form-control" name="light" value="${text}" placeholder="${text}"></form>`;
 
     const input = td.querySelector('input');
     input.focus();
@@ -94,7 +98,9 @@ document.querySelectorAll('.editable').forEach(td => {
     // Handle Enter key to save
     input.addEventListener('keydown', function (e) {
       if (e.key === 'Enter') {
+        document.getElementById(formID).submit();
         td.textContent = input.value.trim();
+        
       }
     });
   });
