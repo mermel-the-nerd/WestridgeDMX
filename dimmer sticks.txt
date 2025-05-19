@@ -30,16 +30,61 @@ can also search for instrument/electric -> will show all the numbers its assigne
 
 
 
+bank of addresses - global array of booleans
+find all objects, loop through them, every spot taken make it false
+
+when go to home route - if array.length is 0, run function to add something, update when add/edit
+
+json file in public that i read and write to 
+// Write to file
+
+import fs from "fs";
+
+fs.writeFileSync("data.json", JSON.stringify({ myArray: [1, 2, 3] }));
+
+ 
+
+// Read from file
+
+const data = JSON.parse(fs.readFileSync("data.json"));
+
+console.log(data.myArray);
+
+
+rob notes:
+
+
+ write out full names for headings
+
+show empty sections 
+
+
+setup mobile access - make pending bar hide on open
+
+MOBILE UI
+
+
+JUST MAKE THE WHOLE THING A TABLE ACTUALLY - spots for location and instrument type
+
+
 
 to do:
-make light database + show in ui
-function to add new lights/instruments
-	show blank spaces
-edit prexsisting lights
-	also way to move addresses not just data
-delete lights
-change user
-track changes
+
+function to add new lights/instruments - done except for address numbers and user
+make user autofill into there
+
+fill blank spaces into dropdown - source from data base
+
+
+make pending words depend on whether its new or edited
+
+distinguish between universes?
+	
+
+
+
 search
+
+
 
 

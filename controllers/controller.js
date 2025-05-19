@@ -1,13 +1,51 @@
 import Instrument from '../models/Instrument.js';
 
+const addressBank = []
+const emptyBlocks = []
+
 
 export const loadHome = async (req, res) => {
   try {
+    const emptyBlocks = []
     const instruments = await Instrument.find();
 
+    if(addressBank.length ===0){
+      for(let i=0;i<512;i++){
+        addressBank.push(false)
+        
+      }
+      
+
+    }
+  
     instruments.sort((a, b) => a.startAddress - b.startAddress);
     
-    res.render('index', { instruments});
+instruments.forEach(instrument=>{
+ for(let i=instrument.startAddress-1;i<instrument.startAddress + instrument.lightlist.length-1;i++){
+  addressBank[i] = true
+ }
+})
+
+
+let group = []
+
+addressBank.forEach((address, index) => {
+  if (!address) {
+    group.push(index + 1);
+  } else if (group.length > 0) {
+    emptyBlocks.push(group);
+    group = [];
+  }
+});
+
+// Push the last group if it exists
+if (group.length > 0) {
+  emptyBlocks.push(group);
+}
+console.log(emptyBlocks)
+
+
+    res.render('index', { instruments, emptyBlocks});
   } catch (err) {
     res.status(500).send('Server Error');
   }

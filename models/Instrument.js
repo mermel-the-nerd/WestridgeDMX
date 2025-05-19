@@ -24,13 +24,10 @@ const instrumentSchema = new mongoose.Schema({
   },
   startAddress: {
     type: Number,
-    default: 1,
+    //default: 1,
     // required: true,
   },
-  endAddress: {
-    type: Number,
-    // required: true,
-  }, 
+    
 });
 
 const Instrument = mongoose.model('Instrument', instrumentSchema);

@@ -40,8 +40,10 @@ document.addEventListener('DOMContentLoaded', () => { //show + hide pending side
 
  
 
-addressInput.addEventListener('input', ()=>{
+addressInput.addEventListener('input', ()=>{ //dynamically making the table for the new instrument view
     const addressCount = addressInput.value
+    const addressDrop = document.getElementById('addressSelect')
+    addressDrop.innerHTML = ''
     tableDiv.innerHTML = '';
     const table = document.createElement('table');
     table.classList.add('table', 'table-bordered');
@@ -69,6 +71,17 @@ addressInput.addEventListener('input', ()=>{
     table.appendChild(tbody);
     tableDiv.appendChild(table);
 
+
+    emptyBlocks.forEach(block=>{
+if(block.length>=addressCount){
+  if(block.length===1){
+     addressDrop.innerHTML+=`<li><a class="dropdown-item" href="#">${block[0]}</a></li>`
+  } else {
+  addressDrop.innerHTML+=`<li><a class="dropdown-item" href="#">${block[0]}-${block[addressCount-1]}</a></li>`
+}
+}
+    })
+
 });
 
 
@@ -78,11 +91,14 @@ document.querySelectorAll('.editable').forEach((td) => {
     if (td.querySelector('input')) return;
 
     // Save and exit from any currently open input
-    const openInput = document.querySelector('.editable input');
-    if (openInput) {
-      const parentTd = openInput.closest('td');
-      parentTd.textContent = openInput.value.trim();
-    }
+    // const openInput = document.querySelector('.editable input');
+    // if (openInput) {
+    //   const parentTd = openInput.closest('td');
+    //   if (parentForm) {
+    //     parentForm.submit(); // ✅ Submit the existing open form
+    //     return; // ⛔ Stop here to wait for redirect before editing another cell
+    //   }
+    // }
 
     const realIndex = td.getAttribute('data-index');
     const formID = `edit-form-${realIndex}`;

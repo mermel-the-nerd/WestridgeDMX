@@ -20,9 +20,18 @@
                if (!instrument.pending) { %>
             
             <!-- Summary Row -->
+
+            <% if(instrument.lightlist.length===1){ %>
+              <tr class="toggle-btn"  colspan="3">
+              <td ><%= instrument.startAddress %></td>
+              <td> <%= instrument.name %></td>
+              <td class="editable" data-index="0" data-id="<%= instrument._id %>"><%= instrument.lightlist[0]%></td>
+              <td><a href="/delete/<%= instrument.id %>" class="btn btn-danger">Delete</a></td>
+            </tr>
+           <% } else{ %>
             
             <tr class="toggle-btn" onclick="toggleRows('<%= idx %>')" colspan="3">
-              <td ><%= instrument.startAddress %>–<%= instrument.endAddress %></td>
+              <td ><%= instrument.startAddress %>–<%= instrument.startAddress+ instrument.lightlist.length-1 %></td>
               <td> <%= instrument.name %></td>
               <td></td>
               <td><a href="/delete/<%= instrument.id %>" class="btn btn-danger">Delete</a></td>
@@ -35,7 +44,7 @@
       <td><%= instrument.name %></td>
       <td class="editable" data-index="<%= localIndex %>" data-id="<%= instrument._id %>"><%= light %></td>
     </tr>
-  <% }) %>
+  <% }) }%>
 
 
           <% } }); %>
