@@ -4,7 +4,7 @@
     <% if (instrument.pending) { 
         pendinginstrument = true%>
         <div>
-            <p><%= instrument.user %> wants <%= instrument.name %> in addresses <%= instrument.startAddress %>-<%= instrument.endAddress %></p>
+            <p><%= instrument.user %> wants <%= instrument.name %> in address<%= instrument.lightlist.length === 1 ? ` ${instrument.startAddress}` : `es ${instrument.startAddress}-${instrument.lightlist.length-1}` %></p>
             <a href="/confirm/<%= instrument.id %>" class="btn btn-secondary">Done</a>
 
         </div>

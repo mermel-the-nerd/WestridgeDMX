@@ -54,17 +54,17 @@ console.log(emptyBlocks)
 export const addInstrument = async (req, res) => {
   try {
     //startAddress, endAddress
-    const { name, number, dmxtype, notes, lightlist, user} = req.body;
-    console.log(user)
+    const { name, number,  lightlist, user, startAddress} = req.body;
+  
     
-    const instrument = new Instrument({ name, dmxtype, notes, lightlist, dmxtype, user});
+    const instrument = new Instrument({ name, lightlist, user, startAddress});
     await instrument.save();  
     const instruments = await Instrument.find();
       
-  
+    
 
     // res.render('index', { instruments});
-    res.redirect('/')
+      res.redirect('/')
   } catch (err) {
     res.status(500).send(err);
   }

@@ -42,8 +42,9 @@ document.addEventListener('DOMContentLoaded', () => { //show + hide pending side
 
 addressInput.addEventListener('input', ()=>{ //dynamically making the table for the new instrument view
     const addressCount = addressInput.value
+    
     const addressDrop = document.getElementById('addressSelect')
-    addressDrop.innerHTML = ''
+    addressDrop.innerHTML = '<option value="select">Select Address</option>'
     tableDiv.innerHTML = '';
     const table = document.createElement('table');
     table.classList.add('table', 'table-bordered');
@@ -74,10 +75,11 @@ addressInput.addEventListener('input', ()=>{ //dynamically making the table for 
 
     emptyBlocks.forEach(block=>{
 if(block.length>=addressCount){
-  if(block.length===1){
-     addressDrop.innerHTML+=`<li><a class="dropdown-item" href="#">${block[0]}</a></li>`
+  if(addressCount===`1`){
+     addressDrop.innerHTML+=` <option value="${block[0]}">${block[0]}</option>`
   } else {
-  addressDrop.innerHTML+=`<li><a class="dropdown-item" href="#">${block[0]}-${block[addressCount-1]}</a></li>`
+    
+  addressDrop.innerHTML+=` <option value="${block[0]}">${block[0]}-${block[addressCount-1]}</option>`
 }
 }
     })
