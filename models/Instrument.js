@@ -11,7 +11,7 @@ const instrumentSchema = new mongoose.Schema({
   },
   user: {
     type: String,
-    enum: ["Ms Kellogg", "Rob", "Maddie"]
+    enum: ["Ms. Kellogg", "Rob", "Maddie"]
   },
   pending: {
     type: Boolean,

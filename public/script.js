@@ -5,9 +5,27 @@ const intro = document.getElementById('hi')
 
 document.addEventListener('DOMContentLoaded', () => { //show + hide pending sidebar + enlarging and shrinking table
     const pending = document.getElementById('pending');
-    const table = document.querySelector('.content-wrapper');
+    const table = document.getElementById('table');
     const pendingbtn = document.getElementById('pendingbtn')
-   
+    const pendingclose = document.getElementById('pendingclose')
+
+    const isMobile = window.innerWidth <= 768;
+
+    if (isMobile) {
+      // Remove show class to collapse the pending sidebar
+      pending.classList.remove('show');
+      // Remove pending-open class from content-wrapper
+      table.classList.remove('pending-open');
+      // Update the toggle button text
+      pendingbtn.innerText = 'Show Changelog';
+    }
+
+    pendingclose.addEventListener('click', () => {
+      
+table.classList.remove('pending-open');
+      pendingbtn.innerText='Show Changelog'
+    }
+  )
   
     pending.addEventListener('shown.bs.collapse', () => {
       table.classList.add('pending-open');

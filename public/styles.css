@@ -9,6 +9,21 @@
     border-bottom: 1px solid #dee2e6;
   }
 
+  @media (max-width: 767.98px) {
+    #pending {
+      position: relative !important;
+      width: 100% !important;
+      height: auto !important;
+      border-left: none !important;
+      border-top: 1px solid #dee2e6 !important;
+      box-shadow: none !important;
+      transition: none !important;
+    }
+  }
+  
+ 
+  
+
   #pending {
     position: fixed;
     top: 0;
@@ -28,12 +43,6 @@
     width: 300px; /* Animate open */
   }
 
-  .content-wrapper {
-    display: flex;
-    transition: all 0.4s ease;
-    height: 100%;
-    position: relative;
-  }
 
   * {
     font-family:Verdana, Geneva, Tahoma, sans-serif;
@@ -43,14 +52,18 @@
     align-items: right;
   } */
   
-  .table {
+  #table {
     flex-grow: 1;
     transition: margin-right 0.4s ease;
     padding: 2%;
   }
 
-  .pending-open {
-    margin-right:300px;
+  #table{
+    transition: all 0.3s ease;
+  }
+  
+  #table.pending-open {
+    width: calc(100% - 320px); /* Adjust to match your #pending width */
   }
 
   h4 {
@@ -88,28 +101,12 @@
     display: none;
   }  
 
- 
-  
-  #accordions {
-    display: flex;
-    gap: 2rem; /* space between the accordions */
-    flex-wrap: wrap; /* allows them to stack on smaller screens */
-    padding: 2%;
-  }
-  
-  .accordion {
-    flex: 1;
-    min-width: 300px; /* responsive minimum width */
-  }
 
   #table-header {
     margin:auto;
     text-align: center;
   }
 
-.accordion-buttons {
-    text-align: right;
-}
 
 #hi {
     text-align: center;
