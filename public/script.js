@@ -5,35 +5,32 @@ const intro = document.getElementById('hi')
 
 document.addEventListener('DOMContentLoaded', () => { //show + hide pending sidebar + enlarging and shrinking table
     const pending = document.getElementById('pending');
-    const table = document.getElementById('table');
+    const table = document.getElementById('tableDiv');
     const pendingbtn = document.getElementById('pendingbtn')
     const pendingclose = document.getElementById('pendingclose')
 
-    const isMobile = window.innerWidth <= 768;
-
-    if (isMobile) {
-      // Remove show class to collapse the pending sidebar
-      pending.classList.remove('show');
-      // Remove pending-open class from content-wrapper
-      table.classList.remove('pending-open');
-      // Update the toggle button text
-      pendingbtn.innerText = 'Show Changelog';
-    }
+  
+    
 
     pendingclose.addEventListener('click', () => {
       
 table.classList.remove('pending-open');
+table.classList.add('col', 'flex-grow-1')
       pendingbtn.innerText='Show Changelog'
     }
   )
   
     pending.addEventListener('shown.bs.collapse', () => {
       table.classList.add('pending-open');
+      table.classList.remove('col', 'flex-grow-1'); //
+      table.style.width = 'calc(100% - 320px)'
       pendingbtn.innerText='Hide Changelog'
     });
   
     pending.addEventListener('hidden.bs.collapse', () => {
       table.classList.remove('pending-open');
+      table.classList.add('col', 'flex-grow-1')
+      // table.style.width = '';
       pendingbtn.innerText='Show Changelog'
     });
 

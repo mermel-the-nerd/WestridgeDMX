@@ -54,16 +54,20 @@
   
   #table {
     flex-grow: 1;
-    transition: margin-right 0.4s ease;
     padding: 2%;
   }
 
-  #table{
+  #tableDiv{
+    width: 100%;
     transition: all 0.3s ease;
+    
   }
   
-  #table.pending-open {
-    width: calc(100% - 320px); /* Adjust to match your #pending width */
+  .pending-open {
+    width: calc(100% - 320px);
+    
+    
+    /* calc(100% - 320px); Adjust to match your #pending width */
   }
 
   h4 {
