@@ -1,35 +1,38 @@
 import Instrument from '../models/Instrument.js';
 
-const addressBank = []
+
 const emptyBlocks = []
+
 
 
 export const loadHome = async (req, res) => {
   try {
     const emptyBlocks = []
+    const blocks = []
+    const addressBank = []
     const instruments = await Instrument.find();
 
-    if(addressBank.length ===0){
+    
       for(let i=0;i<512;i++){
         addressBank.push(false)
         
       }
       
 
-    }
+    
   
     instruments.sort((a, b) => a.startAddress - b.startAddress);
     
-instruments.forEach(instrument=>{
+instruments.forEach(instrument=>{ //populating addressBank
  for(let i=instrument.startAddress-1;i<instrument.startAddress + instrument.lightlist.length-1;i++){
   addressBank[i] = true
  }
 })
 
-
+console.log(addressBank)
 let group = []
 
-addressBank.forEach((address, index) => {
+addressBank.forEach((address, index) => { //populating emptyBlocks
   if (!address) {
     group.push(index + 1);
   } else if (group.length > 0) {
@@ -44,8 +47,35 @@ if (group.length > 0) {
 }
 console.log(emptyBlocks)
 
+instruments.forEach(instrument => {
+  if (!instrument.pending) {
+    blocks.push({
+      type: 'instrument',
+      start: instrument.startAddress,
+      end: instrument.startAddress + instrument.lightlist.length - 1,
+      data: instrument
+    });
+  }
+});
 
-    res.render('index', { instruments, emptyBlocks});
+// Add emptyBlocks
+emptyBlocks.forEach(group => {
+  if (Array.isArray(group) && group.length > 0) {
+    blocks.push({
+      type: 'empty',
+      start: group[0],
+      end: group[group.length - 1],
+      data: group
+    });
+  }
+});
+
+// Sort all by start address
+blocks.sort((a, b) => a.start - b.start);
+
+console.log(blocks)
+
+    res.render('index', { blocks, emptyBlocks, instruments});
   } catch (err) {
     res.status(500).send('Server Error');
   }

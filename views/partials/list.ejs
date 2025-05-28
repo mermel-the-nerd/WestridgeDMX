@@ -1,56 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-    <table class="table" >
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Location</th>
-            <th>Instrument Type</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% instruments.forEach(function(instrument, idx) { 
-               if (!instrument.pending) { %>
-
-                
-            
-            <!-- Summary Row -->
-
-            <% if(instrument.lightlist.length===1){ %>
-              <tr class="toggle-btn"  colspan="3">
-              <td ><%= instrument.startAddress %></td>
-              <td> <%= instrument.name %></td>
-              <td class="editable" data-index="0" data-id="<%= instrument._id %>"><%= instrument.lightlist[0]%></td>
-              <td><a href="/delete/<%= instrument.id %>" class="btn btn-danger">Delete</a></td>
-            </tr>
-           <% } else{ %>
-            
-            <tr class="toggle-btn" onclick="toggleRows('<%= idx %>')" colspan="3">
-              <td ><%= instrument.startAddress %>–<%= instrument.startAddress+ instrument.lightlist.length-1 %></td>
-              <td> <%= instrument.name %></td>
-              <td></td>
-              <td><a href="/delete/<%= instrument.id %>" class="btn btn-danger">Delete</a></td>
-            </tr>
-    
-         
-  <% instrument.lightlist.forEach(function(light, localIndex) { %>
-    <tr class="details-<%= idx %> hidden-rows">
-      <th scope="row"><%= instrument.startAddress + localIndex %></th>
-      <td><%= instrument.name %></td>
-      <td class="editable" data-index="<%= localIndex %>" data-id="<%= instrument._id %>"><%= light %></td>
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Location</th>
+      <th>Instrument Type</th>
+      <th></th>
     </tr>
-  <% }) }%>
+  </thead>
+  <tbody>
+    <% blocks.forEach(function(instrument, idx) { %>
+      <% if (instrument.type === 'instrument') { %>
+
+        <% if (instrument.data && Array.isArray(instrument.data.lightlist) && instrument.data.lightlist.length === 1) { %>
+
+          <tr class="toggle-btn">
+            <td><%= instrument.start %></td>
+            <td><%= instrument.data.name %></td>
+            <td class="editable" data-index="0" data-id="<%= instrument.data._id %>"><%= instrument.data.lightlist[0] %></td>
+            <td><a href="/delete/<%= instrument.data.id %>" class="btn btn-danger">Delete</a></td>
+          </tr>
+        <% } else { %>
+          <tr class="toggle-btn" onclick="toggleRows('<%= idx %>')">
+            <td><%= instrument.start %>–<%= instrument.end %></td>
+            <td><%= instrument.data.name %></td>
+            <td></td>
+            <td><a href="/delete/<%= instrument.data.id %>" class="btn btn-danger">Delete</a></td>
+          </tr>
+
+         <% if (instrument.data && Array.isArray(instrument.data.lightlist)) { %>
+  <% instrument.data.lightlist.forEach(function(light, localIndex) { %>
+    <tr class="details-<%= idx %> hidden-rows">
+      <th scope="row"><%= instrument.start + localIndex %></th>
+      <td><%= instrument.data.name %></td>
+      <td class="editable" data-index="<%= localIndex %>" data-id="<%= instrument.data._id %>"><%= light %></td>
+      <td></td>
+    </tr>
+  <% }); %>
+<% }} %>
 
 
-          <% } }); %>
-        </tbody>
-      </table>
-</body>
-</html>
+      <% } else { %>
+        <tr class="toggle-btn emptyrow">
+          <td><%= instrument.start %>–<%= instrument.end %></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      <% } %>
+    <% }); %>
+  </tbody>
+</table>

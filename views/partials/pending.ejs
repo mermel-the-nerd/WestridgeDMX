@@ -6,13 +6,16 @@
   <br>
   
   <% let pendinginstrument = false %>
-  <% instruments.forEach(function(instrument) { %>
-    <% if (instrument.pending) { pendinginstrument = true %>
+  <% instruments.forEach(function(instrument) {
+    
+          
+    if (instrument.pending) { pendinginstrument = true; %>
+      
       <div class="mb-3">
         <p>
           <%= instrument.user %> wants <%= instrument.name %> in address<%= instrument.lightlist.length === 1
                 ? ` ${instrument.startAddress}`
-                : `es ${instrument.startAddress}-${instrument.lightlist.length - 1}` %>
+                : `es ${instrument.startAddress}-${instrument.startAddress + instrument.lightlist.length -1}` %>
         </p>
         <a href="/confirm/<%= instrument.id %>" class="btn btn-secondary">Done</a>
       </div>
